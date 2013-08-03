@@ -1,6 +1,6 @@
 Name:          jackson-databind
 Version:       2.2.2
-Release:       2%{?dist}
+Release:       3%{?dist}
 Summary:       General data-binding package for Jackson (2.x)
 License:       ASL 2.0 and LGPLv2+
 URL:           http://wiki.fasterxml.com/JacksonHome
@@ -75,6 +75,9 @@ rm src/test/java/com/fasterxml/jackson/databind/ser/TestJdkTypes.java \
 %doc LICENSE-2.0.txt lgpl-2.1.txt
 
 %changelog
+* Sat Aug 03 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.2.2-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
+
 * Mon Jul 22 2013 gil cattaneo <puntogil@libero.it> 2.2.2-2
 - review fixes
 
