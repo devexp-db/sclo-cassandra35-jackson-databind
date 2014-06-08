@@ -25,7 +25,7 @@ BuildRequires: maven-enforcer-plugin
 BuildRequires: maven-plugin-build-helper
 BuildRequires: maven-plugin-bundle
 BuildRequires: maven-site-plugin
-BuildRequires: maven-surefire-provider-junit4
+BuildRequires: maven-surefire-provider-junit
 BuildRequires: replacer
 # bundle-plugin Requires
 #BuildRequires: mvn(org.sonatype.aether:aether)
