@@ -1,5 +1,5 @@
 Name:          jackson-databind
-Version:       2.4.1.1
+Version:       2.4.1.3
 Release:       1%{?dist}
 Summary:       General data-binding package for Jackson (2.x)
 License:       ASL 2.0 and LGPLv2+
@@ -18,11 +18,6 @@ BuildRequires: mvn(junit:junit)
 BuildRequires: mvn(org.codehaus.groovy:groovy)
 
 BuildRequires: maven-local
-BuildRequires: maven-enforcer-plugin
-BuildRequires: maven-plugin-build-helper
-BuildRequires: maven-plugin-bundle
-BuildRequires: maven-site-plugin
-BuildRequires: maven-surefire-provider-junit
 BuildRequires: replacer
 # bundle-plugin Requires
 #BuildRequires: mvn(org.sonatype.aether:aether)
@@ -72,6 +67,9 @@ rm src/test/java/com/fasterxml/jackson/databind/ser/TestJdkTypes.java \
 %doc LICENSE NOTICE
 
 %changelog
+* Wed Jul 23 2014 gil cattaneo <puntogil@libero.it> 2.4.1.3-1
+- update to 2.4.1.3
+
 * Thu Jul 03 2014 gil cattaneo <puntogil@libero.it> 2.4.1.1-1
 - update to 2.4.1.1
 
