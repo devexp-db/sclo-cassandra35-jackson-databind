@@ -67,7 +67,7 @@ rm src/test/java/com/fasterxml/jackson/databind/ser/TestJdkTypes.java \
 %doc LICENSE NOTICE
 
 %changelog
-* Wed Jul 23 2014 gil cattaneo <puntogil@libero.it> 2.4.2-1
+* Sat Sep 20 2014 gil cattaneo <puntogil@libero.it> 2.4.2-1
 - update to 2.4.2
 
 * Wed Jul 23 2014 gil cattaneo <puntogil@libero.it> 2.4.1.3-1
