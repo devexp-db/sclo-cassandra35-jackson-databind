@@ -1,5 +1,5 @@
 Name:          jackson-databind
-Version:       2.4.2
+Version:       2.5.0
 Release:       1%{?dist}
 Summary:       General data-binding package for Jackson (2.x)
 License:       ASL 2.0 and LGPLv2+
@@ -47,26 +47,34 @@ sed -i 's/\r//' LICENSE NOTICE
 # unavailable test deps
 %pom_remove_dep org.hibernate:hibernate-cglib-repack
 rm src/test/java/com/fasterxml/jackson/databind/interop/TestHibernate.java
+%pom_remove_dep javax.measure:jsr-275
+rm src/test/java/com/fasterxml/jackson/databind/deser/TestNoClassDefFoundDeserializer.java
+
 # Off test that require connection with the web
 rm src/test/java/com/fasterxml/jackson/databind/ser/TestJdkTypes.java \
  src/test/java/com/fasterxml/jackson/databind/deser/TestJdkTypes.java \
  src/test/java/com/fasterxml/jackson/databind/TestJDKSerialization.java
 
+%mvn_file : %{name}
+
 %build
 
-%mvn_file : %{name}
 %mvn_build -- -Dmaven.test.failure.ignore=true
 
 %install
 %mvn_install
 
 %files -f .mfiles
-%doc LICENSE NOTICE README.md release-notes/*
+%doc README.md release-notes/*
+%license LICENSE NOTICE
 
 %files javadoc -f .mfiles-javadoc
-%doc LICENSE NOTICE
+%license LICENSE NOTICE
 
 %changelog
+* Sat Jan 31 2015 gil cattaneo <puntogil@libero.it> 2.5.0-1
+- update to 2.5.0
+
 * Sat Sep 20 2014 gil cattaneo <puntogil@libero.it> 2.4.2-1
 - update to 2.4.2
 
