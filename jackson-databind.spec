@@ -1,5 +1,5 @@
 Name:          jackson-databind
-Version:       2.6.2
+Version:       2.6.3
 Release:       1%{?dist}
 Summary:       General data-binding package for Jackson (2.x)
 License:       ASL 2.0 and LGPLv2+
@@ -10,6 +10,7 @@ BuildRequires: maven-local
 BuildRequires: mvn(com.fasterxml.jackson:jackson-parent:pom:)
 BuildRequires: mvn(com.fasterxml.jackson.core:jackson-annotations) >= 2.4.1
 BuildRequires: mvn(com.fasterxml.jackson.core:jackson-core) >= 2.4.1
+BuildRequires: mvn(com.google.guava:guava)
 BuildRequires: mvn(com.google.code.maven-replacer-plugin:replacer)
 BuildRequires: mvn(org.powermock:powermock-api-mockito)
 BuildRequires: mvn(org.powermock:powermock-module-junit4)
@@ -66,6 +67,9 @@ rm src/test/java/com/fasterxml/jackson/databind/ser/TestJdkTypes.java \
 %license LICENSE NOTICE
 
 %changelog
+* Sun Oct 25 2015 gil cattaneo <puntogil@libero.it> 2.6.3-1
+- update to 2.6.3
+
 * Mon Sep 28 2015 gil cattaneo <puntogil@libero.it> 2.6.2-1
 - update to 2.6.2
 
