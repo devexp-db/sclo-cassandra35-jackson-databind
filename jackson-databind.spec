@@ -1,5 +1,5 @@
 Name:          jackson-databind
-Version:       2.6.6
+Version:       2.6.7
 Release:       1%{?dist}
 Summary:       General data-binding package for Jackson (2.x)
 License:       ASL 2.0 and LGPLv2+
@@ -67,6 +67,9 @@ rm src/test/java/com/fasterxml/jackson/databind/ser/TestJdkTypes.java \
 %license LICENSE NOTICE
 
 %changelog
+* Fri Jun 24 2016 gil cattaneo <puntogil@libero.it> 2.6.7-1
+- update to 2.6.7
+
 * Thu May 26 2016 gil cattaneo <puntogil@libero.it> 2.6.6-1
 - update to 2.6.6
 
