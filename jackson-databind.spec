@@ -1,39 +1,50 @@
-Name:          jackson-databind
-Version:       2.7.6
-Release:       2%{?dist}
-Summary:       General data-binding package for Jackson (2.x)
-License:       ASL 2.0 and LGPLv2+
-URL:           http://wiki.fasterxml.com/JacksonHome
-Source0:       https://github.com/FasterXML/jackson-databind/archive/%{name}-%{version}.tar.gz
+%{?scl:%scl_package jackson-databind}
+%{!?scl:%global pkg_name %{name}}
 
-BuildRequires: maven-local
-BuildRequires: mvn(com.fasterxml.jackson:jackson-parent:pom:)
-BuildRequires: mvn(com.fasterxml.jackson.core:jackson-annotations) >= 2.4.1
-BuildRequires: mvn(com.fasterxml.jackson.core:jackson-core) >= 2.4.1
-BuildRequires: mvn(com.google.guava:guava)
-BuildRequires: mvn(com.google.code.maven-replacer-plugin:replacer)
-BuildRequires: mvn(org.powermock:powermock-api-mockito)
-BuildRequires: mvn(org.powermock:powermock-module-junit4)
+Name:		%{?scl_prefix}jackson-databind
+Version:	2.7.6
+Release:	3%{?dist}
+Summary:	General data-binding package for Jackson (2.x)
+License:	ASL 2.0 and LGPLv2+
+URL:		http://wiki.fasterxml.com/JacksonHome
+Source0:	https://github.com/FasterXML/%{pkg_name}/archive/%{pkg_name}-%{version}.tar.gz
 
-BuildArch:     noarch
+BuildRequires:	%{?scl_prefix_maven}maven-local
+BuildRequires:	%{?scl_prefix}jackson-parent
+BuildRequires:	%{?scl_prefix}jackson-annotations%{!?scl: >= 2.4.1}
+BuildRequires:	%{?scl_prefix}jackson-core%{!?scl: >= 2.4.1}
+BuildRequires:	%{?scl_prefix}guava
+BuildRequires:	%{?scl_prefix}replacer
+BuildRequires:	%{?scl_prefix}powermock-api-mockito
+BuildRequires:	%{?scl_prefix}powermock-junit4
+BuildRequires:	%{?scl_prefix}powermock-common
+BuildRequires:	%{?scl_prefix}powermock-core
+BuildRequires:	%{?scl_prefix}powermock-reflect
+BuildRequires:	%{?scl_prefix}powermock-api-support
+BuildRequires:	%{?scl_prefix_maven}mockito
+BuildRequires:	%{?scl_prefix}fasterxml-oss-parent
+BuildRequires:	%{?scl_prefix_java_common}javassist
+%{?scl:Requires: %scl_runtime}
+BuildArch:	noarch
 
 %description
 General data-binding functionality for Jackson:
 works on core streaming API.
 
 %package javadoc
-Summary:       Javadoc for %{name}
+Summary:	Javadoc for %{name}
 
 %description javadoc
 This package contains javadoc for %{name}.
 
 %prep
-%setup -q -n %{name}-%{name}-%{version}
+%setup -q -n %{pkg_name}-%{pkg_name}-%{version}
 
 cp -p src/main/resources/META-INF/LICENSE .
 cp -p src/main/resources/META-INF/NOTICE .
 sed -i 's/\r//' LICENSE NOTICE
 
+%{?scl:scl enable %{scl_maven} %{scl} - << "EOF"}
 # unavailable test deps
 %pom_remove_dep javax.measure:jsr-275
 rm src/test/java/com/fasterxml/jackson/databind/introspect/NoClassDefFoundWorkaroundTest.java
@@ -50,14 +61,18 @@ rm src/test/java/com/fasterxml/jackson/databind/ser/TestJdkTypes.java \
  src/test/java/com/fasterxml/jackson/databind/deser/TestJdkTypes.java \
  src/test/java/com/fasterxml/jackson/databind/TestJDKSerialization.java
 
-%mvn_file : %{name}
+%mvn_file : %{pkg_name}
+%{?scl:EOF}
 
 %build
-
+%{?scl:scl enable %{scl_maven} %{scl} - << "EOF"}
 %mvn_build -- -Dmaven.test.failure.ignore=true
+%{?scl:EOF}
 
 %install
+%{?scl:scl enable %{scl_maven} %{scl} - << "EOF"}
 %mvn_install
+%{?scl:EOF}
 
 %files -f .mfiles
 %doc README.md release-notes/*
@@ -67,6 +82,9 @@ rm src/test/java/com/fasterxml/jackson/databind/ser/TestJdkTypes.java \
 %license LICENSE NOTICE
 
 %changelog
+* Tue Mar 07 2017 Tomas Repik <trepik@redhat.com> - 2.7.6-3
+- scl conversion
+
 * Fri Feb 10 2017 Fedora Release Engineering <releng@fedoraproject.org> - 2.7.6-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_26_Mass_Rebuild
 
